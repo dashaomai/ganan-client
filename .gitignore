@@ -1,0 +1,7 @@
+.DS_Store
+.import
+*.translation
+export_presets.cfg
+.mono
+.vscode
+
