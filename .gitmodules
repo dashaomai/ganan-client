@@ -1,0 +1,8 @@
+[submodule "libs/pinus-godot-client"]
+	path = libs/pinus-godot-client
+	url = git@github.com:dashaomai/pinus-godot-client.git
+	branch = main
+[submodule "libs/godot-logger"]
+	path = libs/godot-logger
+	url = git@github.com:dashaomai/godot-logger.git
+	branch = main

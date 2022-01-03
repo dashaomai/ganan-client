@@ -11,7 +11,12 @@ config_version=4
 [application]
 
 config/name="ganan-client"
+run/main_scene="res://core/bootstrap.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+Client="*res://libs/pinus-godot-client/Client.cs"
 
 [physics]
 
