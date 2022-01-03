@@ -6,3 +6,7 @@
 	path = libs/godot-logger
 	url = git@github.com:dashaomai/godot-logger.git
 	branch = main
+[submodule "libs/reactive-plus"]
+	path = libs/reactive-plus
+	url = git@github.com:dashaomai/reactive-plus.git
+	branch = main
