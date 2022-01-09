@@ -4,4 +4,4 @@
 export_presets.cfg
 .mono
 .vscode
-
+mono_crash*
