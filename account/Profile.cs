@@ -10,5 +10,7 @@ namespace Account
     {
         public readonly RxVar<string> Nickname = "".ToRxVar();
         public readonly RxVar<string> Avatar = "".ToRxVar();
+
+        public readonly RxVar<int> Level = 0.ToRxVar();
     }
 }

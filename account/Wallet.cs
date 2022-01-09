@@ -7,6 +7,7 @@ namespace Account
     /// </summary>
     public class Wallet
     {
-        public readonly RxVar<float> Money = 0f.ToRxVar();
+        public readonly RxVar<int> Currency = 0.ToRxVar();
+        public readonly RxVar<float> Coins = 0f.ToRxVar();
     }
 }

@@ -1,5 +1,7 @@
 using System;
 using Account;
+using Auth;
+using Consts;
 using Godot;
 using GodotLogger;
 using Newtonsoft.Json.Linq;
@@ -41,11 +43,7 @@ public class Bootstrap : Node
 
         player.Profile.Nickname.Notify(nickname => this.nickname.Text = nickname);
         player.Profile.Avatar.Notify(avatar => this.avatar.Text = avatar);
-        player.Wallet.Money.Notify(money => this.money.Text = money.ToString());
-
-        player.Profile.Nickname.Value = "buddy-01";
-        player.Profile.Avatar.Value = "https://www.baidu.com/";
-        player.Wallet.Money.Value = 99999f;
+        player.Wallet.Coins.Notify(money => this.money.Text = money.ToString());
     }
 
     private void _OnHandshakeCompleted(JObject obj)
@@ -59,12 +57,32 @@ public class Bootstrap : Node
     private void _OnLogon(JObject result)
     {
         _log.Debug($"logoned with response: {result}");
+
+        ResponseCode code = (ResponseCode)(int)result["code"];
+
+        if (code == ResponseCode.SUCCESS)
+        {
+            JObject playerInfo = (JObject)result["player"];
+            player.Id = (string)playerInfo["id"];
+            JObject playerProfile = (JObject)playerInfo["profile"];
+            JObject playerWallet = (JObject)playerInfo["wallet"];
+            player.Profile.Nickname.Value = (string)playerProfile["nickname"];
+            player.Profile.Avatar.Value = (string)playerProfile["avatar"];
+            player.Profile.Level.Value = (int)playerProfile["level"];
+
+            player.Wallet.Currency.Value = (int)playerWallet["currency"];
+            player.Wallet.Coins.Value = (float)playerWallet["coins"];
+        }
+        else
+        {
+            _log.Warn("logon failed");
+        }
     }
 
         // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(float delta)
     {
-        player.Wallet.Money.Value -= 1f;
+        player.Wallet.Coins.Value -= 1f;
     }
 
     private void _OnNetworkStatusChanged(NetworkStatus status)
