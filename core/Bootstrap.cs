@@ -79,7 +79,6 @@ public class Bootstrap : Node
         }
     }
 
-        // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(float delta)
     {
         player.Wallet.Coins.Value -= 1f;
