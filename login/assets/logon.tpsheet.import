@@ -1,0 +1,15 @@
+[remap]
+
+importer="codeandweb.texturepacker_import_spritesheet"
+type="Resource"
+path="res://.import/logon.tpsheet-65566a88a4555865c6a28f169416bdfa.res"
+
+[deps]
+
+files=[ "res://login/assets/logon.sprites/logo_private.tres", "res://login/assets/logon.sprites/logo_chess.tres", "res://login/assets/logon.sprites/logo_x.tres", "res://login/assets/logon.sprites/texture_logon_bg.tres", "res://login/assets/logon.sprites/btn_logon.tres", "res://login/assets/logon.sprites/label_account.tres" ]
+
+source_file="res://login/assets/logon.tpsheet"
+dest_files=[ "res://.import/logon.tpsheet-65566a88a4555865c6a28f169416bdfa.res", "res://login/assets/logon.sprites/logo_private.tres", "res://login/assets/logon.sprites/logo_chess.tres", "res://login/assets/logon.sprites/logo_x.tres", "res://login/assets/logon.sprites/texture_logon_bg.tres", "res://login/assets/logon.sprites/btn_logon.tres", "res://login/assets/logon.sprites/label_account.tres" ]
+
+[params]
+

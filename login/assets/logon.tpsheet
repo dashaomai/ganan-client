@@ -1,0 +1,108 @@
+{
+	"textures": [
+		{
+			"image": "logon.png",
+			"size": {
+				"w": 845,
+				"h": 592
+			},
+			"sprites": [
+				{
+					"filename": "logo_private.png",
+					"region": {
+						"x": 1,
+						"y": 1,
+						"w": 421,
+						"h": 348
+					},
+					"margin": {
+						"x": 5,
+						"y": 2,
+						"w": 9,
+						"h": 7
+					}
+				},
+				{
+					"filename": "logo_chess.png",
+					"region": {
+						"x": 424,
+						"y": 1,
+						"w": 420,
+						"h": 348
+					},
+					"margin": {
+						"x": 5,
+						"y": 2,
+						"w": 10,
+						"h": 7
+					}
+				},
+				{
+					"filename": "logo_x.png",
+					"region": {
+						"x": 1,
+						"y": 351,
+						"w": 295,
+						"h": 240
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "texture_logon_bg.png",
+					"region": {
+						"x": 298,
+						"y": 351,
+						"w": 482,
+						"h": 87
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "btn_logon.png",
+					"region": {
+						"x": 298,
+						"y": 440,
+						"w": 373,
+						"h": 133
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "label_account.png",
+					"region": {
+						"x": 673,
+						"y": 440,
+						"w": 89,
+						"h": 45
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "1.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:cc1ef97ab3a0f14971ca3ff87d36d4d0:bc0488b3fea30166e7d712059086fd78:34d8ccfaa796a2053c2e5a1dca9ad938$"
+	}
+}
