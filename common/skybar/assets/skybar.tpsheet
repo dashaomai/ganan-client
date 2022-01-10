@@ -1,0 +1,63 @@
+{
+	"textures": [
+		{
+			"image": "skybar.png",
+			"size": {
+				"w": 1024,
+				"h": 131
+			},
+			"sprites": [
+				{
+					"filename": "bg_skybar.png",
+					"region": {
+						"x": 0,
+						"y": 0,
+						"w": 1024,
+						"h": 63
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "bg_coins.png",
+					"region": {
+						"x": 0,
+						"y": 63,
+						"w": 218,
+						"h": 32
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "bg_avatar.png",
+					"region": {
+						"x": 218,
+						"y": 63,
+						"w": 68,
+						"h": 68
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "1.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:61d981db7f40ed753ac1562a913d5c30:3d360eacfe6edcc96b22951d26fdf862:bbab91bde4a5daf8093250360c7b55b6$"
+	}
+}

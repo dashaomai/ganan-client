@@ -1,0 +1,15 @@
+[remap]
+
+importer="codeandweb.texturepacker_import_spritesheet"
+type="Resource"
+path="res://.import/skybar.tpsheet-7ab5bc17ecc5da46edbcc1d1eabfa0ff.res"
+
+[deps]
+
+files=[ "res://common/skybar/assets/skybar.sprites/bg_skybar.tres", "res://common/skybar/assets/skybar.sprites/bg_coins.tres", "res://common/skybar/assets/skybar.sprites/bg_avatar.tres" ]
+
+source_file="res://common/skybar/assets/skybar.tpsheet"
+dest_files=[ "res://.import/skybar.tpsheet-7ab5bc17ecc5da46edbcc1d1eabfa0ff.res", "res://common/skybar/assets/skybar.sprites/bg_skybar.tres", "res://common/skybar/assets/skybar.sprites/bg_coins.tres", "res://common/skybar/assets/skybar.sprites/bg_avatar.tres" ]
+
+[params]
+
