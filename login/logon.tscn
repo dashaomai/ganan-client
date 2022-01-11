@@ -1,8 +1,15 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://login/Logon.cs" type="Script" id=1]
 [ext_resource path="res://login/assets/bg_0.jpg" type="Texture" id=2]
 [ext_resource path="res://login/assets/mg_0.png" type="Texture" id=3]
+[ext_resource path="res://login/assets/logon.sprites/btn_logon.tres" type="Texture" id=4]
+[ext_resource path="res://login/assets/logon.sprites/texture_logon_bg.tres" type="Texture" id=5]
+[ext_resource path="res://login/assets/logon.sprites/logo_chess.tres" type="Texture" id=6]
+[ext_resource path="res://login/assets/logon.sprites/label_account.tres" type="Texture" id=7]
+[ext_resource path="res://themes/default.tres" type="Theme" id=8]
+
+[sub_resource type="StyleBoxEmpty" id=1]
 
 [node name="Logon" type="MarginContainer"]
 anchor_right = 1.0
@@ -48,3 +55,46 @@ size_flags_horizontal = 3
 [node name="VBox" type="VBoxContainer" parent="HBox/Right"]
 margin_right = 638.0
 margin_bottom = 720.0
+
+[node name="LogoChess" type="TextureRect" parent="HBox/Right/VBox"]
+margin_right = 638.0
+margin_bottom = 355.0
+size_flags_vertical = 3
+texture = ExtResource( 6 )
+
+[node name="MarginContainer" type="MarginContainer" parent="HBox/Right/VBox"]
+margin_top = 359.0
+margin_right = 638.0
+margin_bottom = 446.0
+
+[node name="Bg" type="TextureRect" parent="HBox/Right/VBox/MarginContainer"]
+margin_right = 638.0
+margin_bottom = 87.0
+texture = ExtResource( 5 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBox/Right/VBox/MarginContainer"]
+margin_right = 638.0
+margin_bottom = 87.0
+
+[node name="TextureRect" type="TextureRect" parent="HBox/Right/VBox/MarginContainer/HBoxContainer"]
+margin_right = 89.0
+margin_bottom = 87.0
+texture = ExtResource( 7 )
+stretch_mode = 4
+
+[node name="LineEdit" type="LineEdit" parent="HBox/Right/VBox/MarginContainer/HBoxContainer"]
+margin_left = 93.0
+margin_right = 638.0
+margin_bottom = 87.0
+size_flags_horizontal = 3
+theme = ExtResource( 8 )
+custom_styles/normal = SubResource( 1 )
+placeholder_text = "Please Input"
+placeholder_alpha = 0.75
+
+[node name="TextureButton" type="TextureButton" parent="HBox/Right/VBox"]
+margin_top = 450.0
+margin_right = 638.0
+margin_bottom = 720.0
+size_flags_vertical = 3
+texture_normal = ExtResource( 4 )
