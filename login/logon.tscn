@@ -41,60 +41,82 @@ margin_right = 1280.0
 margin_bottom = 720.0
 
 [node name="Left" type="Container" parent="HBox"]
-margin_right = 638.0
+margin_right = 600.0
+margin_bottom = 720.0
+rect_min_size = Vector2( 600, 0 )
+
+[node name="Middle" type="MarginContainer" parent="HBox"]
+margin_left = 604.0
+margin_right = 1086.0
 margin_bottom = 720.0
 size_flags_horizontal = 3
-size_flags_vertical = 3
 
-[node name="Right" type="MarginContainer" parent="HBox"]
-margin_left = 642.0
-margin_right = 1280.0
-margin_bottom = 720.0
-size_flags_horizontal = 3
-
-[node name="VBox" type="VBoxContainer" parent="HBox/Right"]
-margin_right = 638.0
+[node name="HBoxContainer" type="HBoxContainer" parent="HBox/Middle"]
+margin_right = 482.0
 margin_bottom = 720.0
 
-[node name="LogoChess" type="TextureRect" parent="HBox/Right/VBox"]
-margin_right = 638.0
+[node name="VBox" type="VBoxContainer" parent="HBox/Middle/HBoxContainer"]
+margin_right = 482.0
+margin_bottom = 720.0
+
+[node name="LogoChess" type="TextureRect" parent="HBox/Middle/HBoxContainer/VBox"]
+margin_right = 482.0
 margin_bottom = 355.0
 size_flags_vertical = 3
 texture = ExtResource( 6 )
 
-[node name="MarginContainer" type="MarginContainer" parent="HBox/Right/VBox"]
+[node name="MarginContainer" type="MarginContainer" parent="HBox/Middle/HBoxContainer/VBox"]
 margin_top = 359.0
-margin_right = 638.0
+margin_right = 482.0
 margin_bottom = 446.0
 
-[node name="Bg" type="TextureRect" parent="HBox/Right/VBox/MarginContainer"]
-margin_right = 638.0
+[node name="Bg" type="TextureRect" parent="HBox/Middle/HBoxContainer/VBox/MarginContainer"]
+margin_right = 482.0
 margin_bottom = 87.0
 texture = ExtResource( 5 )
+stretch_mode = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HBox/Right/VBox/MarginContainer"]
-margin_right = 638.0
+[node name="HBoxContainer" type="HBoxContainer" parent="HBox/Middle/HBoxContainer/VBox/MarginContainer"]
+margin_right = 482.0
 margin_bottom = 87.0
 
-[node name="TextureRect" type="TextureRect" parent="HBox/Right/VBox/MarginContainer/HBoxContainer"]
-margin_right = 89.0
+[node name="LogonLabel" type="TextureRect" parent="HBox/Middle/HBoxContainer/VBox/MarginContainer/HBoxContainer"]
+margin_right = 150.0
 margin_bottom = 87.0
+rect_min_size = Vector2( 150, 0 )
 texture = ExtResource( 7 )
 stretch_mode = 4
 
-[node name="LineEdit" type="LineEdit" parent="HBox/Right/VBox/MarginContainer/HBoxContainer"]
-margin_left = 93.0
-margin_right = 638.0
-margin_bottom = 87.0
+[node name="MarginContainer" type="MarginContainer" parent="HBox/Middle/HBoxContainer/VBox/MarginContainer/HBoxContainer"]
+margin_left = 154.0
+margin_top = 15.0
+margin_right = 443.0
+margin_bottom = 65.0
 size_flags_horizontal = 3
+
+[node name="LogonLineEdit" type="LineEdit" parent="HBox/Middle/HBoxContainer/VBox/MarginContainer/HBoxContainer/MarginContainer"]
+margin_right = 289.0
+margin_bottom = 50.0
 theme = ExtResource( 8 )
 custom_styles/normal = SubResource( 1 )
 placeholder_text = "Please Input"
 placeholder_alpha = 0.75
 
-[node name="TextureButton" type="TextureButton" parent="HBox/Right/VBox"]
+[node name="Right" type="Container" parent="HBox/Middle/HBoxContainer/VBox/MarginContainer/HBoxContainer"]
+margin_left = 447.0
+margin_right = 482.0
+margin_bottom = 87.0
+rect_min_size = Vector2( 35, 0 )
+
+[node name="TextureButton" type="TextureButton" parent="HBox/Middle/HBoxContainer/VBox"]
 margin_top = 450.0
-margin_right = 638.0
+margin_right = 482.0
 margin_bottom = 720.0
 size_flags_vertical = 3
 texture_normal = ExtResource( 4 )
+
+[node name="Right" type="Container" parent="HBox"]
+margin_left = 1090.0
+margin_right = 1280.0
+margin_bottom = 720.0
+size_flags_horizontal = 3
