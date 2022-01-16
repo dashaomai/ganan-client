@@ -4,33 +4,4 @@
 
 [node name="Bootstrap" type="Node"]
 script = ExtResource( 1 )
-_url = "ws://localhost:3010"
-
-[node name="MarginContainer" type="MarginContainer" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
-margin_right = 1280.0
-margin_bottom = 720.0
-
-[node name="Nickname" type="Label" parent="MarginContainer/HBoxContainer"]
-margin_top = 353.0
-margin_bottom = 367.0
-
-[node name="Avatar" type="Label" parent="MarginContainer/HBoxContainer"]
-margin_left = 4.0
-margin_top = 353.0
-margin_right = 1276.0
-margin_bottom = 367.0
-size_flags_horizontal = 3
-align = 1
-
-[node name="Money" type="Label" parent="MarginContainer/HBoxContainer"]
-margin_left = 1280.0
-margin_top = 353.0
-margin_right = 1280.0
-margin_bottom = 367.0
+_url = "ws://localhost:13131"
