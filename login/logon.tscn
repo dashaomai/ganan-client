@@ -110,7 +110,7 @@ margin_right = 293.0
 margin_bottom = 66.0
 theme = ExtResource( 8 )
 custom_styles/normal = SubResource( 1 )
-placeholder_text = "Please Input"
+placeholder_text = "ACCOUNT_TIP"
 placeholder_alpha = 0.75
 
 [node name="Bottom" type="CenterContainer" parent="HBox/Right/HBoxContainer/VBox"]
