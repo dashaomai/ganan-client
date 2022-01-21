@@ -2,6 +2,7 @@ using Godot;
 using PinusClient;
 using Account;
 using GodotLogger;
+using System.Linq;
 using Newtonsoft.Json.Linq;
 using Consts;
 
@@ -59,14 +60,23 @@ namespace Login
             {
                 JObject playerInfo = (JObject)result["player"];
                 player.Id = (string)playerInfo["id"];
-                JObject playerProfile = (JObject)playerInfo["profile"];
-                JObject playerWallet = (JObject)playerInfo["wallet"];
-                player.Profile.Nickname.Value = (string)playerProfile["nickname"];
-                player.Profile.Avatar.Value = (string)playerProfile["avatar"];
-                player.Profile.Level.Value = (int)playerProfile["level"];
+                player.Profile.Nickname.Value = (string)playerInfo["nickname"];
+                player.Profile.Avatar.Value = (string)playerInfo["avatar"];
+                player.Profile.Level.Value = (short)playerInfo["level"];
 
-                player.Wallet.Currency.Value = (int)playerWallet["currency"];
-                player.Wallet.Coins.Value = (float)playerWallet["coins"];
+                JArray playerWallets = (JArray)playerInfo["wallets"];
+
+                var wallets = from w in playerInfo["wallets"] select new { Id = (int)w["id"], Type = (short)w["type"], Amount = (long)w["amount"] };
+
+                foreach (var w in wallets)
+                {
+                    Wallet wallet = new Wallet();
+                    wallet.Id.Value = w.Id;
+                    wallet.Type.Value = w.Type;
+                    wallet.Amount.Value = w.Amount;
+
+                    player.Wallets.Add(w.Type, wallet);
+                }
             }
             else
             {

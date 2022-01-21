@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Godot;
 
 namespace Account
@@ -11,6 +12,8 @@ namespace Account
         public string Vendor { get; set; }
 
         public readonly Profile Profile = new Profile();
-        public readonly Wallet Wallet = new Wallet();
+
+        /// <summary>以类型为键，下挂的钱包字典</summary>
+        public readonly IDictionary<short, Wallet> Wallets = new Dictionary<short, Wallet>();
     }
 }

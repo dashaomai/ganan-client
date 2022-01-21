@@ -7,7 +7,8 @@ namespace Account
     /// </summary>
     public class Wallet
     {
-        public readonly RxVar<int> Currency = 0.ToRxVar();
-        public readonly RxVar<float> Coins = 0f.ToRxVar();
+        public readonly RxVar<long> Id = new RxVar<long>(0L);
+        public readonly RxVar<short> Type = new RxVar<short>(0);
+        public readonly RxVar<long> Amount = new RxVar<long>(0L);
     }
 }
