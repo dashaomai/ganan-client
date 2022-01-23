@@ -12,7 +12,7 @@ namespace Login
     {
         private static readonly Logger _log = LoggerHelper.GetLogger(typeof(Logon));
 
-        private Client client;
+        private Client gameClient;
         private Player player;
 
         private LineEdit nicknameInput;
@@ -21,7 +21,7 @@ namespace Login
         // Called when the node enters the scene tree for the first time.
         public override void _Ready()
         {
-            client = GetNode<Client>("/root/Client");
+            gameClient = GetNode<Client>("/root/GameClient");
             player = GetNode<Player>("/root/Player");
 
             nicknameInput = GetNode<LineEdit>("HBox/Right/HBoxContainer/VBox/Panel/Logon/Input/LogonLineEdit");
@@ -46,7 +46,7 @@ namespace Login
             {
                 var request = new { token = nickname, vcode = "ganan-dev" };
 
-                client.Request("connector.auth.logon", request, _On_Logon_Response);
+                gameClient.Request("connector.auth.logon", request, _On_Logon_Response);
             }
         }
 

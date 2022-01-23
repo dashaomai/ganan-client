@@ -16,8 +16,8 @@ config/icon="res://icon.png"
 
 [autoload]
 
-Client="*res://libs/pinus-godot-client/Client.cs"
 Player="*res://account/Player.cs"
+GameClient="*res://libs/pinus-godot-client/Client.cs"
 
 [display]
 
