@@ -1,8 +1,11 @@
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Godot;
 using GodotLogger;
 using Newtonsoft.Json.Linq;
+using static Godot.HTTPClient;
+using static Godot.HTTPRequest;
 
 namespace Networking
 {
@@ -13,6 +16,9 @@ namespace Networking
         private static readonly string USER_AGENT = "Mozilla/5.0 Godot/3.4.2 Mono/7.0";
         private static readonly string CONTENT_TYPE = "application/json";
 
+        public event Action<int> OnResultError;
+        public event Action<int> OnResponseCodeError;
+
         private string[] _headers;
 
         private readonly IDictionary<string, string> headers;
@@ -20,6 +26,8 @@ namespace Networking
         private readonly HTTPRequest httpRequest = new HTTPRequest();
 
         public string BaseUrl { get; set; }
+
+        private Action<JObject> _callback = null;
 
         public ApiClient()
         {
@@ -53,9 +61,37 @@ namespace Networking
 
         private void _OnRequestCompleted(int result, int response_code, string[] headers, byte[] body)
         {
-            string response = Encoding.UTF8.GetString(body);
+            var r = (Result)result;
 
-            _log.Debug($"response for {response}");
+            if (r == Result.Success)
+            {
+                var rc = (ResponseCode)response_code;
+
+                if (rc == ResponseCode.Ok)
+                {
+
+                    var response = JObject.Parse(Encoding.UTF8.GetString(body));
+
+                    _callback?.Invoke(response);
+                    _callback = null;
+
+                    _log.Debug($"response for {response}");
+
+                }
+                else
+                {
+                    OnResponseCodeError?.Invoke(response_code);
+                }
+            }
+            else
+            {
+                OnResultError?.Invoke(result);
+            }
+        }
+
+        private void _StoreCb(Action<JObject> callback)
+        {
+            _callback = callback;
         }
 
         public void ApiGet(string url)
@@ -63,22 +99,35 @@ namespace Networking
 
         }
 
-        public void ApiPost(string url, object payload)
+        public void ApiPost(string url, object payload, Action<JObject> callback)
         {
             var body = JToken.FromObject(payload);
+            var uri = BaseUrl + url;
 
             var error = httpRequest.Request(
-                BaseUrl + url, _headers, BaseUrl.StartsWith("https://"), HTTPClient.Method.Post, body.ToString()
+                uri, _headers, BaseUrl.StartsWith("https://"), HTTPClient.Method.Post, body.ToString()
             );
 
             if (error == Error.Ok)
             {
-                _log.Debug($"post to {url} with payload {body}");
+                _log.Debug($"post to {uri} with payload {body}");
+
+                _StoreCb(callback);
             }
             else
             {
-                _log.Warn($"post to {url} handle an error {error}");
+                _log.Warn($"post to {uri} handle an error {error}");
             }
+        }
+
+        public void Login(object payload)
+        {
+            ApiPost("/v1/account/login", payload, _OnLogined);
+        }
+
+        private void _OnLogined(JObject loginResponse)
+        {
+            _log.Debug($"logined with response {loginResponse}");
         }
     }
 }

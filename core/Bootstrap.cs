@@ -21,14 +21,21 @@ public class Bootstrap : Node
         _log.Debug("ready to bootstrap");
 
         _apiClient = GetNode<ApiClient>("/root/ApiClient");
-        _apiClient.BaseUrl = "http://localhost:3000/";
-        _apiClient.ApiPost("v1/account/login", new { token = "buddy", vcode = "ganan-dev" });
+        _apiClient.BaseUrl = "http://localhost:13000";
+        _apiClient.OnResultError += result => _log.Warn($"result error {result}");
+        _apiClient.OnResponseCodeError += code => _log.Warn($"response code error {code}");
+        _apiClient.Login(new { token = "buddy", vcode = "ganan-dev" });
 
         _gameClient = GetNode<Client>("/root/GameClient");
         _gameClient.OnHandshakeCompleted += _OnHandshakeCompleted;
 
         // 直接让客户端连接到服务器
         _gameClient.ConnectTo(new WebSocketParameter(_url));
+    }
+
+    private void _OnLogin(JObject loginResponse)
+    {
+
     }
 
     private void _OnHandshakeCompleted(JObject obj)
