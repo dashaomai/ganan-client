@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using Godot;
 using GodotLogger;
@@ -128,6 +129,11 @@ namespace Networking
         private void _OnLogined(JObject loginResponse)
         {
             _log.Debug($"logined with response {loginResponse}");
+
+            var bearer = (string)loginResponse["bearer"];
+            var jwt = new JwtSecurityTokenHandler().ReadJwtToken(bearer);
+
+            _log.Debug($"get jwt {jwt.ValidTo}");
         }
     }
 }
