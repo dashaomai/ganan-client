@@ -18,6 +18,7 @@ config/icon="res://icon.png"
 
 Player="*res://account/Player.cs"
 GameClient="*res://libs/pinus-godot-client/Client.cs"
+ApiClient="*res://networking/ApiClient.cs"
 
 [display]
 

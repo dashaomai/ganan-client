@@ -1,6 +1,6 @@
-using Account;
 using Godot;
 using GodotLogger;
+using Networking;
 using Newtonsoft.Json.Linq;
 using PinusClient;
 using PinusClient.Transporter;
@@ -12,12 +12,17 @@ public class Bootstrap : Node
     [Export]
     private readonly string _url;
 
+    private ApiClient _apiClient;
     private Client _gameClient;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         _log.Debug("ready to bootstrap");
+
+        _apiClient = GetNode<ApiClient>("/root/ApiClient");
+        _apiClient.BaseUrl = "http://localhost:3000/";
+        _apiClient.ApiPost("v1/account/login", new { token = "buddy", vcode = "ganan-dev" });
 
         _gameClient = GetNode<Client>("/root/GameClient");
         _gameClient.OnHandshakeCompleted += _OnHandshakeCompleted;
