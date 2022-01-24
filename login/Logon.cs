@@ -5,6 +5,7 @@ using GodotLogger;
 using System.Linq;
 using Newtonsoft.Json.Linq;
 using Consts;
+using Networking;
 
 namespace Login
 {
@@ -13,6 +14,7 @@ namespace Login
         private static readonly Logger _log = LoggerHelper.GetLogger(typeof(Logon));
 
         private Client gameClient;
+        private ApiClient apiClient;
         private Player player;
 
         private LineEdit nicknameInput;
@@ -21,6 +23,7 @@ namespace Login
         // Called when the node enters the scene tree for the first time.
         public override void _Ready()
         {
+            apiClient = GetNode<ApiClient>("/root/ApiClient");
             gameClient = GetNode<Client>("/root/GameClient");
             player = GetNode<Player>("/root/Player");
 
@@ -46,8 +49,19 @@ namespace Login
             {
                 var request = new { token = nickname, vcode = "ganan-dev" };
 
-                gameClient.Request("connector.auth.logon", request, _On_Logon_Response);
+                apiClient.OnResultError += result => _log.Warn($"result error {result}");
+                apiClient.OnResponseCodeError += code => _log.Warn($"response code error {code}");
+                apiClient.OnLogined += _OnApiLoginResponse;
+                apiClient.Login(request);
             }
+        }
+
+        private void _OnApiLoginResponse(in LoginResult result)
+        {
+            _log.Debug("api login success, now logon to game server");
+
+            gameClient.Request("connector.auth.logon", result, _On_Logon_Response);
+
         }
 
         private void _On_Logon_Response(JObject result)

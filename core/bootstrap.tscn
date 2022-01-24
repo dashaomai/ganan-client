@@ -4,4 +4,5 @@
 
 [node name="Bootstrap" type="Node"]
 script = ExtResource( 1 )
-_url = "ws://localhost:13131"
+_apiBase = "http://localhost:13000"
+_gameUrl = "ws://localhost:13131"

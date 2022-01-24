@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
+using Account;
 using Godot;
 using GodotLogger;
 using Newtonsoft.Json.Linq;
@@ -21,6 +22,12 @@ namespace Networking
         public event Action<int> OnResultError;
         public event Action<int> OnResponseCodeError;
 
+        public delegate void OnLoginedHandler(in LoginResult result);
+        /// <summary>
+        /// 登录成功
+        /// </summary>
+        public event OnLoginedHandler OnLogined;
+
         /// 请求头管理
         private string[] _headers;
 
@@ -37,6 +44,9 @@ namespace Networking
         /// 计时
         private float _exchangeOffset = 0f;
         private float _exchangeDelta = 0f;
+
+        /// 状态记录
+        private bool _isLogon = false;
 
         public ApiClient()
         {
@@ -150,6 +160,8 @@ namespace Networking
             OnResultError += _OnResultError;
             OnResponseCodeError += _OnResponseCodeError;
 
+            _isLogon = true;
+
             ApiPost("/v1/account/login", payload, _OnBearerResult);
         }
 
@@ -157,6 +169,8 @@ namespace Networking
         {
             OnResultError += _OnResultError;
             OnResponseCodeError += _OnResponseCodeError;
+
+            _isLogon = false;
 
             var payload = new {};
             ApiPost("/v1/account/exchange", payload, _OnBearerResult);
@@ -185,6 +199,24 @@ namespace Networking
                 BuildHeaders();
 
                 _log.Debug($"setup jwt with offset {_exchangeOffset}");
+
+                // 转为业务响应，通过登录事件送出
+                if (_isLogon)
+                {
+                    jwt.TryGetValue("playerId", out object playerIdObj);
+                    jwt.TryGetValue("sessionId", out object sessionIdObj);
+                    jwt.TryGetValue("vendorId", out object vendorIdObj);
+                    jwt.TryGetValue("codeId", out object codeIdObj);
+
+                    string playerId = (string)playerIdObj;
+                    string sessionId = (string)sessionIdObj;
+                    int vendorId = Convert.ToInt32(vendorIdObj);
+                    int codeId = Convert.ToInt32(codeIdObj);
+
+                    LoginResult result = new LoginResult(playerId, sessionId, vendorId, codeId);
+
+                    OnLogined?.Invoke(result);
+                }
             }
             else
             {
