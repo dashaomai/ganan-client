@@ -17,18 +17,26 @@ namespace Networking
         private static readonly string USER_AGENT = "Mozilla/5.0 Godot/3.4.2 Mono/7.0";
         private static readonly string CONTENT_TYPE = "application/json";
 
+        /// 收到响应后，有错误码时的回调
         public event Action<int> OnResultError;
         public event Action<int> OnResponseCodeError;
 
+        /// 请求头管理
         private string[] _headers;
 
         private readonly IDictionary<string, string> headers;
 
         private readonly HTTPRequest httpRequest = new HTTPRequest();
 
+        /// <summary>基础 URL</summary>
         public string BaseUrl { get; set; }
 
         private Action<JObject> _callback = null;
+
+
+        /// 计时
+        private float _exchangeOffset = 0f;
+        private float _exchangeDelta = 0f;
 
         public ApiClient()
         {
@@ -42,6 +50,22 @@ namespace Networking
             AddChild(httpRequest);
 
             httpRequest.Connect("request_completed", this, nameof(_OnRequestCompleted));
+        }
+
+        public override void _Process(float delta)
+        {
+            if (_exchangeOffset > 0f && _exchangeDelta < _exchangeOffset)
+            {
+                // 进行更换 jwt 的计时
+                _exchangeDelta += delta;
+
+                if (_exchangeDelta >= _exchangeOffset)
+                {
+                    _exchangeOffset = 0f;
+
+                    Exchange();
+                }
+            }
         }
 
         /// <summary>构造下次请求时使用的 headers </summary>
@@ -111,7 +135,7 @@ namespace Networking
 
             if (error == Error.Ok)
             {
-                _log.Debug($"post to {uri} with payload {body}");
+                _log.Debug($"post to {uri} with headers {string.Join(",", _headers)} and payload {body}");
 
                 _StoreCb(callback);
             }
@@ -123,17 +147,76 @@ namespace Networking
 
         public void Login(object payload)
         {
-            ApiPost("/v1/account/login", payload, _OnLogined);
+            OnResultError += _OnResultError;
+            OnResponseCodeError += _OnResponseCodeError;
+
+            ApiPost("/v1/account/login", payload, _OnBearerResult);
         }
 
-        private void _OnLogined(JObject loginResponse)
+        private void Exchange()
         {
-            _log.Debug($"logined with response {loginResponse}");
+            OnResultError += _OnResultError;
+            OnResponseCodeError += _OnResponseCodeError;
+
+            var payload = new {};
+            ApiPost("/v1/account/exchange", payload, _OnBearerResult);
+        }
+
+        private void _OnBearerResult(JObject loginResponse)
+        {
+            OnResultError -= _OnResultError;
+            OnResponseCodeError -= _OnResponseCodeError;
 
             var bearer = (string)loginResponse["bearer"];
-            var jwt = new JwtSecurityTokenHandler().ReadJwtToken(bearer);
+            var jwt = new JwtSecurityTokenHandler().ReadJwtToken(bearer).Payload;
 
-            _log.Debug($"get jwt {jwt.ValidTo}");
+            var exp = jwt.Exp.GetValueOrDefault(0);
+            var iat = jwt.Iat.GetValueOrDefault(0);
+
+            int offset = exp - iat;
+            if (offset > 0)
+            {
+                // 仅当时间值有效时才做定期更换 token 的任务
+                _exchangeOffset = Math.Max(0.01f, offset - 500f);
+                _exchangeDelta = 0f;
+
+                // 添加 HTTP 头
+                headers["Authorization"] = $"Bearer {bearer}";
+                BuildHeaders();
+
+                _log.Debug($"setup jwt with offset {_exchangeOffset}");
+            }
+            else
+            {
+                _log.Warn($"wrong of exp {exp} and iat {iat}");
+                
+                // 进行重试逻辑
+                _ScheduleRetry();
+            }
+
+        }
+
+        private void _OnResultError(int result)
+        {
+            _log.Warn($"result error {result}");
+
+            // 执行重试逻辑
+            _ScheduleRetry();
+        }
+
+        private void _OnResponseCodeError(int responseCode)
+        {
+            _log.Warn($"response code error {responseCode}");
+
+            // 执行重试逻辑
+            _ScheduleRetry();
+        }
+
+        private void _ScheduleRetry()
+        {
+            OnResultError -= _OnResultError;
+            OnResponseCodeError -= _OnResponseCodeError;
+
         }
     }
 }
