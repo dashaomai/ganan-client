@@ -8,25 +8,10 @@
 			},
 			"sprites": [
 				{
-					"filename": "bg_skybar.png",
-					"region": {
-						"x": 0,
-						"y": 0,
-						"w": 1024,
-						"h": 63
-					},
-					"margin": {
-						"x": 0,
-						"y": 0,
-						"w": 0,
-						"h": 0
-					}
-				},
-				{
 					"filename": "bg_coins.png",
 					"region": {
 						"x": 0,
-						"y": 63,
+						"y": 0,
 						"w": 218,
 						"h": 32
 					},
@@ -38,12 +23,57 @@
 					}
 				},
 				{
-					"filename": "bg_avatar.png",
+					"filename": "coin_icon.png",
 					"region": {
 						"x": 218,
-						"y": 63,
+						"y": 0,
+						"w": 45,
+						"h": 44
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "arrow.png",
+					"region": {
+						"x": 263,
+						"y": 0,
+						"w": 45,
+						"h": 60
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "bg_avatar.png",
+					"region": {
+						"x": 308,
+						"y": 0,
 						"w": 68,
 						"h": 68
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "bg_skybar.png",
+					"region": {
+						"x": 0,
+						"y": 68,
+						"w": 1024,
+						"h": 63
 					},
 					"margin": {
 						"x": 0,
@@ -58,6 +88,6 @@
 	"meta": {
 		"app": "https://www.codeandweb.com/texturepacker",
 		"version": "1.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:61d981db7f40ed753ac1562a913d5c30:3d360eacfe6edcc96b22951d26fdf862:bbab91bde4a5daf8093250360c7b55b6$"
+		"smartupdate": "$TexturePacker:SmartUpdate:6035d09b72be3006e6d3fb1153a53d1c:babd6a2002a5364b8ac075642fabff76:bbab91bde4a5daf8093250360c7b55b6$"
 	}
 }

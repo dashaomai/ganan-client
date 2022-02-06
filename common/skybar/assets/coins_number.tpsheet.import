@@ -1,0 +1,15 @@
+[remap]
+
+importer="codeandweb.texturepacker_import_spritesheet"
+type="Resource"
+path="res://.import/coins_number.tpsheet-10b59029712600c04b86db3f75ccac33.res"
+
+[deps]
+
+files=[ "res://common/skybar/assets/coins_number.sprites/coin_divid.tres", "res://common/skybar/assets/coins_number.sprites/coin_k.tres", "res://common/skybar/assets/coins_number.sprites/coin_7.tres", "res://common/skybar/assets/coins_number.sprites/coin_0.tres", "res://common/skybar/assets/coins_number.sprites/coin_4.tres", "res://common/skybar/assets/coins_number.sprites/coin_5.tres", "res://common/skybar/assets/coins_number.sprites/coin_m.tres", "res://common/skybar/assets/coins_number.sprites/coin_1.tres", "res://common/skybar/assets/coins_number.sprites/coin_2.tres", "res://common/skybar/assets/coins_number.sprites/coin_3.tres", "res://common/skybar/assets/coins_number.sprites/coin_6.tres", "res://common/skybar/assets/coins_number.sprites/coin_8.tres", "res://common/skybar/assets/coins_number.sprites/coin_9.tres", "res://common/skybar/assets/coins_number.sprites/coin_w.tres", "res://common/skybar/assets/coins_number.sprites/coin_comma.tres", "res://common/skybar/assets/coins_number.sprites/coin_radix.tres" ]
+
+source_file="res://common/skybar/assets/coins_number.tpsheet"
+dest_files=[ "res://.import/coins_number.tpsheet-10b59029712600c04b86db3f75ccac33.res", "res://common/skybar/assets/coins_number.sprites/coin_divid.tres", "res://common/skybar/assets/coins_number.sprites/coin_k.tres", "res://common/skybar/assets/coins_number.sprites/coin_7.tres", "res://common/skybar/assets/coins_number.sprites/coin_0.tres", "res://common/skybar/assets/coins_number.sprites/coin_4.tres", "res://common/skybar/assets/coins_number.sprites/coin_5.tres", "res://common/skybar/assets/coins_number.sprites/coin_m.tres", "res://common/skybar/assets/coins_number.sprites/coin_1.tres", "res://common/skybar/assets/coins_number.sprites/coin_2.tres", "res://common/skybar/assets/coins_number.sprites/coin_3.tres", "res://common/skybar/assets/coins_number.sprites/coin_6.tres", "res://common/skybar/assets/coins_number.sprites/coin_8.tres", "res://common/skybar/assets/coins_number.sprites/coin_9.tres", "res://common/skybar/assets/coins_number.sprites/coin_w.tres", "res://common/skybar/assets/coins_number.sprites/coin_comma.tres", "res://common/skybar/assets/coins_number.sprites/coin_radix.tres" ]
+
+[params]
+
