@@ -20,7 +20,7 @@ public class Skybar : MarginContainer
 
         player = GetNode<Player>("/root/Player");
         player.Profile.Nickname.Notify(value => nickname.Text = value);
-        player.Wallets[109].Amount.Notify(value => coins.Text = value.ToString());
+        player.DefaultWallet.Amount.Notify(value => coins.Text = value.ToString());
     }
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.

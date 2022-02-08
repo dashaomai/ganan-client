@@ -15,5 +15,9 @@ namespace Account
 
         /// <summary>以类型为键，下挂的钱包字典</summary>
         public readonly IDictionary<short, Wallet> Wallets = new Dictionary<short, Wallet>();
+
+        public Wallet DefaultWallet {
+            get { return Wallets[109]; }
+        }
     }
 }
