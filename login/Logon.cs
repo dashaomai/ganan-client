@@ -91,6 +91,10 @@ namespace Login
 
                     player.Wallets.Add(w.Type, wallet);
                 }
+
+                // 成功跳转
+                var scene = ResourceLoader.Load<PackedScene>("res://common/skybar/skybar.tscn");
+                GetTree().ChangeSceneTo(scene);
             }
             else
             {
