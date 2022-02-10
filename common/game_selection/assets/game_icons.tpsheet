@@ -1,0 +1,48 @@
+{
+	"textures": [
+		{
+			"image": "game_icons.png",
+			"size": {
+				"w": 532,
+				"h": 262
+			},
+			"sprites": [
+				{
+					"filename": "icon_mbj.png",
+					"region": {
+						"x": 1,
+						"y": 1,
+						"w": 264,
+						"h": 260
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 12
+					}
+				},
+				{
+					"filename": "icon_txp.png",
+					"region": {
+						"x": 267,
+						"y": 1,
+						"w": 264,
+						"h": 260
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 12
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "1.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:94c743d7c6ffe5e40756db6e7b48868b:0c61c87140ae486895e7df2252e5ee62:59b37b018073d6cb413859a19d790c8b$"
+	}
+}

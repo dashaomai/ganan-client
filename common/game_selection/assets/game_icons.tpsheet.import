@@ -1,0 +1,15 @@
+[remap]
+
+importer="codeandweb.texturepacker_import_spritesheet"
+type="Resource"
+path="res://.import/game_icons.tpsheet-990c75f9759fb0985f74d97abe43f33f.res"
+
+[deps]
+
+files=[ "res://common/game_selection/assets/game_icons.sprites/icon_mbj.tres", "res://common/game_selection/assets/game_icons.sprites/icon_txp.tres" ]
+
+source_file="res://common/game_selection/assets/game_icons.tpsheet"
+dest_files=[ "res://.import/game_icons.tpsheet-990c75f9759fb0985f74d97abe43f33f.res", "res://common/game_selection/assets/game_icons.sprites/icon_mbj.tres", "res://common/game_selection/assets/game_icons.sprites/icon_txp.tres" ]
+
+[params]
+
