@@ -93,7 +93,7 @@ namespace Login
                 }
 
                 // 成功跳转
-                var scene = ResourceLoader.Load<PackedScene>("res://common/skybar/skybar.tscn");
+                var scene = ResourceLoader.Load<PackedScene>("res://common/game_selection/game_select.tscn");
                 GetTree().ChangeSceneTo(scene);
             }
             else
