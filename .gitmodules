@@ -10,3 +10,7 @@
 	path = libs/reactive-plus
 	url = git@github.com:dashaomai/reactive-plus.git
 	branch = main
+[submodule "games/blackjack"]
+	path = games/blackjack
+	url = git@github.com:dashaomai/blackjack.git
+	branch = main
