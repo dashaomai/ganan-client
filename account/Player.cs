@@ -17,7 +17,7 @@ namespace Account
         public readonly IDictionary<short, Wallet> Wallets = new Dictionary<short, Wallet>();
 
         public Wallet DefaultWallet {
-            get { return Wallets[109]; }
+            get { return Wallets.ContainsKey(109) ? Wallets[109] : null; }
         }
     }
 }
