@@ -4,4 +4,6 @@
 font_path = "res://fonts/HarmonyOS Sans/HarmonyOS_Sans_SC/HarmonyOS_Sans_SC_Regular.ttf"
 
 [resource]
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
 font_data = SubResource( 1 )
