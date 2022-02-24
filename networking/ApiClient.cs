@@ -129,9 +129,24 @@ namespace Networking
             _callback = callback;
         }
 
-        public void ApiGet(string url)
+        public void ApiGet(string url, Action<JObject> callback)
         {
+            var uri = BaseUrl + url;
 
+            var error = httpRequest.Request(
+                uri, _headers, BaseUrl.StartsWith("https://"), HTTPClient.Method.Get
+            );
+
+            if (error == Error.Ok)
+            {
+                _log.Debug($"get to {uri} with headers {string.Join(",", _headers)}");
+
+                _StoreCb(callback);
+            }
+            else
+            {
+                _log.Warn($"get to {uri} handle an error {error}");
+            }
         }
 
         public void ApiPost(string url, object payload, Action<JObject> callback)
