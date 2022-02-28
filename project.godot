@@ -29,6 +29,10 @@ window/size/height=720
 
 enabled=PoolStringArray( "res://addons/codeandweb.texturepacker/plugin.cfg" )
 
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
 [locale]
 
 translations=PoolStringArray( "res://i18n/Ganan - Logon.en.translation", "res://i18n/Ganan - Logon.zh.translation", "res://i18n/Ganan - Logon.zh_CN.translation" )
